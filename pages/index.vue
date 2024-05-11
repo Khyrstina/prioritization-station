@@ -4,10 +4,20 @@ import { useStorage} from "@vueuse/core";
 
 const boardStore = useBoardStore()
 const newColumnName = ref('')
+const isModalOpen = computed(() => {
+  return route.name === 'index-tasks-id'
+})
+
+const route = useRoute()
+const router = useRouter()
 
 function addColumn() {
   boardStore.addColumn(newColumnName.value)
   newColumnName.value = ''
+}
+
+function closeModal() {
+router.push('/')
 }
 </script>
 <template>
@@ -29,5 +39,8 @@ function addColumn() {
       </UInput>
     </UContainer>
   </main>
+    <div v-show="isModalOpen" class="task-bg" @click.self="closeModal">
+      <NuxtPage :key="route.fullPath" />
+    </div>
   </div>
 </template>
