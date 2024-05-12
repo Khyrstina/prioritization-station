@@ -20,10 +20,10 @@ function deleteTask() {
   <div class="task-wrapper">
     <div v-if="task" class="task-view">
       <uFormGroup label="Name">
-        <UInput type="text" v-model="task.name" class="w-full mb-4"/>
+        <UInput type="text" v-model="task.name" class="w-full mb-4 edit-box"/>
       </uFormGroup>
       <uFormGroup label="Description" class="w-full mb-4">
-        <UTextarea v-model="task.description" />
+        <UTextarea v-model="task.description" class="edit-box"/>
       </uFormGroup>
       <UButton
           icon="i-heroicons-trash"

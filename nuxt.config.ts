@@ -5,6 +5,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@pinia/nuxt', '@nuxt/ui', '@vueuse/nuxt'],
   colorMode: {
-    preference: 'light',
+    preference: 'dark',
   }
 })

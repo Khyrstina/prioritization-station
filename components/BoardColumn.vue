@@ -98,7 +98,7 @@ function dropItem(event, { toColumnIndex, toTaskIndex }) {
     <ul>
       <li v-for="(task, taskIndex) in column.tasks"
           :key="task.id">
-        <UCard class="mb-4" @click="goToTask(task.id)" draggable="true"
+        <UCard class="mb-4 task-item" @click="goToTask(task.id)" draggable="true"
         @dragstart="pickUpTask($event, {
           fromTaskIndex: taskIndex,
           fromColumnIndex: columnIndex,
@@ -114,6 +114,7 @@ function dropItem(event, { toColumnIndex, toTaskIndex }) {
     <UInput
         v-model="newTaskName"
         type="text"
+        color="purple"
         icon="i-heroicons-plus-circle-solid"
         placeholder="Create New Task"
     @keyup.enter="addTask"/>

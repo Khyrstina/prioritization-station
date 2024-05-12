@@ -29,13 +29,14 @@ router.push('/')
          :column="column"
           :columnIndex="columnIndex">
     </BoardColumn>
-    <UContainer class="column">
-      <UInput type="text"
+    <UContainer class="column" >
+      <UInput
+          type="text"
+          color="none"
               v-model="newColumnName"
               icon="i-heroicons-plus-circle-solid"
               placeholder="Create New Column"
       @keyup.enter="addColumn">
-
       </UInput>
     </UContainer>
   </main>
