@@ -50,6 +50,12 @@ function addColumn(columnName) {
 function deleteColumn(columnIndex) {
     board.value.columns.splice(columnIndex, 1)
 }
+
+function moveColumn({ fromColumnIndex, toColumnIndex }) {
+    const column = board.value.columns.splice(fromColumnIndex, 1)[0]
+    board.value.columns.splice(toColumnIndex, 0, column)
+}
+
 return {
     /*State of the board*/
     board,
@@ -60,6 +66,7 @@ return {
     addColumn,
     deleteColumn,
     deleteTask,
+    moveColumn,
     moveTask,
 }
 })
