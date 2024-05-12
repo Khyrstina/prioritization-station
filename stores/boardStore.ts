@@ -34,6 +34,13 @@ const getTask = computed(() => {
     }
     }
 
+    function moveTask({ taskIndex, fromColumnIndex, toColumnIndex }) {
+        const task = board.value.columns[fromColumnIndex].tasks.splice
+        (taskIndex, 1)[0]
+
+        board.value.columns[toColumnIndex].tasks.push(task)
+    }
+
 function addColumn(columnName) {
     board.value.columns.push({
         name: columnName,
@@ -53,5 +60,6 @@ return {
     addColumn,
     deleteColumn,
     deleteTask,
+    moveTask,
 }
 })
