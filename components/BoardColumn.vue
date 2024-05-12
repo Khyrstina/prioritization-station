@@ -47,7 +47,7 @@ function pickUpTask(event, { fromColumnIndex, fromTaskIndex }) {
   event.dataTransfer.setData('from-task-index', fromTaskIndex)
 }
 
-function dropItem(event, toColumnIndex) {
+function dropItem(event, { toColumnIndex, toTaskIndex }) {
   const type = event.dataTransfer.getData('type')
   const fromColumnIndex = event.dataTransfer.getData('from-column-index')
 
@@ -55,7 +55,8 @@ function dropItem(event, toColumnIndex) {
     const fromTaskIndex = event.dataTransfer.getData('from-task-index')
 
     boardStore.moveTask({
-      taskIndex: fromTaskIndex,
+      fromTaskIndex,
+      toTaskIndex,
       fromColumnIndex,
       toColumnIndex,
     })
@@ -75,7 +76,7 @@ function dropItem(event, toColumnIndex) {
               @dragstart.self="pickupColumn($event, columnIndex)"
               @dragenter.prevent
               @dragover.prevent
-              @drop.stop="dropItem($event, columnIndex)">
+              @drop.stop="dropItem($event, {toColumnIndex: columnIndex })">
     <div class="column-header mb-4">
       <div>
         <UInput v-if="editNameState" type="text" v-model="column.name">
@@ -101,7 +102,10 @@ function dropItem(event, toColumnIndex) {
         @dragstart="pickUpTask($event, {
           fromTaskIndex: taskIndex,
           fromColumnIndex: columnIndex,
-        })">
+        })"
+        @drop.stop="dropItem($event, {
+          toColumnIndex: columnIndex,
+          toTaskIndex: taskIndex })">
           <h5>{{ task.name }}</h5>
           <p>{{ task.description }}</p>
         </UCard>
